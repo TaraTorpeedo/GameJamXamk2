@@ -60,5 +60,5 @@ Material:
     - _node_9130: 1.85
     - _node_9705: 4
     m_Colors:
-    - _Color: {r: 0.7725491, g: 0.94117653, b: 0.7725491, a: 1}
+    - _Color: {r: 0.44705883, g: 0.2627451, b: 0.6039216, a: 1}
   m_BuildTextureStacks: []
