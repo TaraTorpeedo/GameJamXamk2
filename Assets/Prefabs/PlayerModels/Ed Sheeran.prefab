@@ -441,7 +441,7 @@ Transform:
   m_GameObject: {fileID: 1327847424936737834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.39486, y: -15.043693, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 852307340973847924}
   - {fileID: 7953376058553456237}
@@ -602,12 +602,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 15
   groundCheck: {fileID: 1772096162}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   gravityMultiplier: 0.01
+  CharacterScale: 0.4
 --- !u!1 &1594448656551965808
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,19 +26,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (gameIsStarted)
+        {
             MainMenuPanel.SetActive(false);
+        }
 
 
     }
 
     public void SwitchCharacter(PlayerInput input)
     {
-
-
         inputManager.playerPrefab = characters[inputManager.playerCount];
         characters[inputManager.playerCount].GetComponent<PlayerInput>().actions = action;
 
-
+    }
+    public void NoMorePlayers()
+    {
+        inputManager.DisableJoining();
     }
 
 }

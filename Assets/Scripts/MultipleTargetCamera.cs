@@ -31,6 +31,8 @@ public class MultipleTargetCamera : MonoBehaviour
     Transform tMin = null;
     public float priorityMultiplier;
 
+    public GameObject Canvas;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
@@ -105,8 +107,17 @@ public class MultipleTargetCamera : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(5);
+        Canvas.GetComponent<StartTexts>().StartWrite();
+
+        while (Canvas.GetComponent<StartTexts>().canPlay == false)
+        {
+            yield return null;
+        }
+
+        gm.NoMorePlayers();
         StartingColliders.SetActive(false);
         lockCamera = false;
     }
+
+
 }
