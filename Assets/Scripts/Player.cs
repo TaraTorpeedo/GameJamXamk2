@@ -68,14 +68,13 @@ public class Player : MonoBehaviour
         else
             isJumping = false;
 
+
         if (rb.velocity.x > 0f)
         {
             if (rb.velocity.x > 10)
                 Run();
             else
                 Walk();
-            //isTurning = true;
-            //turnLeft = false;
         }
 
         else if (rb.velocity.x < 0f)
@@ -85,16 +84,15 @@ public class Player : MonoBehaviour
             else
                 Walk();
 
-            //isTurning = true;
-            //turnLeft = true;
         }
 
         else
             Idle();
 
+
         if (isTurning)
         {
-            if(turnLeft)
+            if (turnLeft)
                 transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, -1, Time.deltaTime * 10), 1, 1);
             else
                 transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 1, Time.deltaTime * 10), 1, 1);
@@ -116,9 +114,20 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
         }
-        Debug.Log(rb.velocity.x);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
+
+    }
+
+    private void LateUpdate()
+    {
+        if (isDead)
+        {
+            Die();
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        else
+            anim.SetBool("isDead", false);
 
     }
 
@@ -154,16 +163,19 @@ public class Player : MonoBehaviour
     public void Move(InputAction.CallbackContext value)
     {
         inputX = value.ReadValue<Vector2>().x;
+        if (!isDead)
+        {
 
-        if (value.ReadValue<Vector2>().x < 0)
-        {
-            isTurning = true;
-            turnLeft = true;
-        }
-        else if(value.ReadValue<Vector2>().x > 0)
-        {
-            isTurning = true;
-            turnLeft = false;
+            if (value.ReadValue<Vector2>().x < 0)
+            {
+                isTurning = true;
+                turnLeft = true;
+            }
+            else if (value.ReadValue<Vector2>().x > 0)
+            {
+                isTurning = true;
+                turnLeft = false;
+            }
         }
 
     }
@@ -232,7 +244,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isJumping", false);
         anim.SetBool("isWalking", false);
         anim.SetBool("isIdling", false);
-        anim.SetBool("isDead", false);
+        //anim.SetBool("isDead", false);
     }
     public void Idle()
     {
@@ -276,6 +288,7 @@ public class Player : MonoBehaviour
             ableToMove = false;
             if(!isDead)
                 StartCoroutine(Spawn());
+
             Die();
         }
 

@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public void SwitchCharacter(PlayerInput input)
     {
 
-        Debug.Log(characters);
 
         inputManager.playerPrefab = characters[inputManager.playerCount];
         characters[inputManager.playerCount].GetComponent<PlayerInput>().actions = action;
