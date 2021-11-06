@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
 
-    [SerializeField] float moveSpeed;//, jumpForce;
+    [SerializeField] float moveSpeed, jumpForce;
     [SerializeField] Transform groundCheck;
     public LayerMask whatIsGround;
     private bool isGrounded;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     Camera cam;
 
-    public float gravityMultiplier;
+    public float gravityMultiplier = 0.01f;
 
     void Start()
     {
@@ -55,8 +55,13 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
 
-        //if (!isGrounded)
-            //rb.velocity += new Vector2(0, -9.81f * gravityMultiplier);
+        if (!isGrounded)
+        {
+            isJumping = true;
+            rb.velocity += new Vector2(0, -9.81f * gravityMultiplier);
+        }
+        else
+            isJumping = false;
 
         if (rb.velocity.x > 0f)
         {
@@ -107,9 +112,7 @@ public class Player : MonoBehaviour
             jumpKeyHeld = true;
             if (isGrounded)
             {
-                float jumpForce = CalculateJumpForce(Physics2D.gravity.magnitude, 5.0f);
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                rb.AddForce(Vector2.up * jumpForce * rb.mass, ForceMode2D.Impulse);
 
             }
         }
@@ -117,23 +120,6 @@ public class Player : MonoBehaviour
         {
             jumpKeyHeld = false;
         }
-    }
-
-     //JUUHJJOOHH....
-    private void FixedUpdate()
-    {
-        if (isJumping)
-        {
-            if (!jumpKeyHeld && Vector2.Dot(rb.velocity, Vector2.up) > 0)
-            {
-                rb.AddForce(new Vector2(0, 9.81f) * rb.mass);
-            }
-        }
-    }
-
-    public static float CalculateJumpForce(float gravityStreght, float jumpHeight)
-    {
-        return Mathf.Sqrt(2 * gravityStreght * jumpHeight);
     }
 
 
