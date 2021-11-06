@@ -77,7 +77,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
+  m_PlayerPrefab: {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -102,7 +102,10 @@ MonoBehaviour:
   gameIsStarted: 0
   MainMenuPanel: {fileID: 0}
   characters:
-  - {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
-  - {fileID: 307944789247335723, guid: 4995bde18582d694aa2ac20992cb73e5, type: 3}
-  - {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
+  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
+  - {fileID: 1327847424936737834, guid: b837984bc913cda48815b35a29862fc7, type: 3}
+  - {fileID: 1327847424936737834, guid: f77b41e63bf2f174cac44367953a37a1, type: 3}
+  - {fileID: 1327847424936737834, guid: 94fd90726d3e2b4459068c5a166b0947, type: 3}
+  inputManager: {fileID: 0}
   action: {fileID: -944628639613478452, guid: 9b2313f2a0c702f4997b9f1268278afd, type: 3}
+  startPosition: {fileID: 0}

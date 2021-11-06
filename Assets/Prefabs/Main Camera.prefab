@@ -137,6 +137,8 @@ MonoBehaviour:
   zoomLimiter: 10
   gm: {fileID: 0}
   StartingColliders: {fileID: 0}
+  FinishLine: {fileID: 0}
+  priorityMultiplier: 0
 --- !u!1 &6360807663285854846
 GameObject:
   m_ObjectHideFlags: 0
