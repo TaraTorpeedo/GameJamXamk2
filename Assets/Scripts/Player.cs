@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rb;
+    BoxCollider2D playerCollider;
 
     [SerializeField] float moveSpeed, jumpForce;
     [SerializeField] Transform groundCheck;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     private bool isJumping;
     private bool jumpKeyHeld;
 
-
+    public float gravityMultiplier = 0.01f;
     float inputX;
 
     MultipleTargetCamera CameraController;
@@ -30,31 +31,31 @@ public class Player : MonoBehaviour
 
     Camera cam;
 
-    public float gravityMultiplier = 0.01f;
+    GameManager gm;
+
 
     void Start()
     {
+        gm = GameObject.Find("PlayerManager").GetComponent<GameManager>();
+        gm.gameIsStarted = true;
+
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         cam = UnityEngine.Camera.main;
 
         spawnPoint = transform.position;
 
         CameraController = GameObject.Find("Main Camera").GetComponent<MultipleTargetCamera>();
-
         CameraController.AddPlayer(transform);
+
+
 
             
     }
 
     private void Update()
     {
-        if (!ableToMove)
-            return;
-
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
-
         if (!isGrounded)
         {
             isJumping = true;
@@ -96,8 +97,42 @@ public class Player : MonoBehaviour
 
             Jump();
         }
+        if (!ableToMove)
+            return;
+
+        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
 
 
+
+    }
+
+    private void FixedUpdate()
+    {
+        FinalCollisionCheck();
+    }
+    private void FinalCollisionCheck()
+    {
+        // Get the velocity
+        Vector2 moveDirection = new Vector2(rb.velocity.x * Time.fixedDeltaTime, 0.2f);
+
+        // Get bounds of Collider
+        //var bottomRight = new Vector2(playerCollider.bounds.max.x, player.collider.bounds.max.y);
+        //var topLeft = new Vector2(playerCollider.bounds.min.x, player.collider.bounds.min.y);
+        var bottomRight = new Vector2(playerCollider.bounds.max.x, playerCollider.bounds.max.y);
+        var topLeft = new Vector2(playerCollider.bounds.min.x, playerCollider.bounds.min.y);
+
+        // Move collider in direction that we are moving
+        bottomRight += moveDirection;
+        topLeft += moveDirection;
+
+        // Check if the body's current velocity will result in a collision
+        LayerMask mask = LayerMask.GetMask("Wall");
+        if (Physics2D.OverlapArea(topLeft, bottomRight, mask))
+        {
+            // If so, stop the movement
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
     }
 
 
@@ -122,24 +157,12 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    IEnumerator OutOfBounds()
-    {
-        Debug.Log("back");
-        yield return new WaitForSeconds(1);
-        Debug.Log("BACK");
-        yield return new WaitForSeconds(1);
-        Debug.Log("BACK!!!");
-        yield return new WaitForSeconds(1);
-        ableToMove = false;
-        StartCoroutine(Spawn());
-        Die();
-    }
-
     IEnumerator Spawn()
     {
 
         yield return new WaitForSeconds(2);
+
+        //Return
         transform.position = spawnPoint;
         ableToMove = true;
         Idle();
@@ -203,7 +226,6 @@ public class Player : MonoBehaviour
         if(other.tag == "CheckPoint")
         {
             spawnPoint = transform.position;
-            Debug.Log("NewCheckpoint");
         }
         if(other.tag == "KillZone")
         {
@@ -211,6 +233,19 @@ public class Player : MonoBehaviour
             StartCoroutine(Spawn());
             Die();
         }
+
+        if(other.tag == "FinishLine")
+        {
+            ableToMove = false;
+            StartCoroutine(Voitto());
+        }
+    }
+
+    IEnumerator Voitto()
+    {
+        Idle();
+        yield return new WaitForSeconds(3);
+        Debug.Log("Kävele");
     }
 
     private void OnTriggerExit2D(Collider2D collision)

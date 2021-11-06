@@ -20,6 +20,12 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private Camera cam;
 
+    [SerializeField] GameManager gm;
+    bool lockCamera = true;
+
+    [SerializeField] GameObject StartingColliders;
+
+
     private void Start()
     {
         cam = GetComponent<Camera>();
@@ -27,6 +33,12 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (gm.gameIsStarted)
+            StartCoroutine(StartGame());
+
+        if (lockCamera)
+            return;
+
         if (targets.Count == 0)
         {
             return;
@@ -75,7 +87,13 @@ public class MultipleTargetCamera : MonoBehaviour
 
     public void AddPlayer(Transform target) {
         targets.Add(target);
-        Debug.Log("Pelaajia" + targets.Count);
 
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(5);
+        StartingColliders.SetActive(false);
+        lockCamera = false;
     }
 }
