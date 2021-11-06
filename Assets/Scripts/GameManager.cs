@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> characters = new List<GameObject>();
     PlayerInputManager inputManager;
 
+    public InputActionAsset action;
+
+    [SerializeField] Transform startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GetComponent<PlayerInputManager>();
-        //index = Random.RandomRange(0, characters.Count);
-        //inputManager.playerPrefab = characters[index];
     }
 
     // Update is called once per frame
@@ -32,12 +33,12 @@ public class GameManager : MonoBehaviour
 
     public void SwitchCharacter(PlayerInput input)
     {
-        //index = Random.Range(0, characters.Count);
-       // inputManager.playerPrefab = characters[index];
 
         Debug.Log(characters);
 
         inputManager.playerPrefab = characters[inputManager.playerCount];
+        characters[inputManager.playerCount].GetComponent<PlayerInput>().actions = action;
+
 
     }
 

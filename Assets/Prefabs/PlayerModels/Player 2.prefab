@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2268852944758383604}
   m_Layer: 0
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307944789247335723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.612707, y: -0.7168789, z: 0}
+  m_LocalPosition: {x: 0.2, y: 4.6, z: -7.061435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6590527029824185076}
@@ -227,7 +227,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  gravityMultiplier: 0.02
+  gravityMultiplier: 123
 --- !u!114 &2268852944758383604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9b2313f2a0c702f4997b9f1268278afd, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

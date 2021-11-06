@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     bool turnLeft = false;
 
     bool ableToMove = true;
+    bool isDead = false;
 
     Vector3 spawnPoint;
 
@@ -33,9 +34,12 @@ public class Player : MonoBehaviour
 
     GameManager gm;
 
+    GameObject FinishLine;
 
     void Start()
     {
+        gameObject.transform.position = new Vector3(-5, -2f, 0);
+
         gm = GameObject.Find("PlayerManager").GetComponent<GameManager>();
         gm.gameIsStarted = true;
 
@@ -48,8 +52,6 @@ public class Player : MonoBehaviour
 
         CameraController = GameObject.Find("Main Camera").GetComponent<MultipleTargetCamera>();
         CameraController.AddPlayer(transform);
-
-
 
             
     }
@@ -159,10 +161,11 @@ public class Player : MonoBehaviour
 
     IEnumerator Spawn()
     {
-
+        isDead = true;
         yield return new WaitForSeconds(2);
 
         //Return
+        isDead = false;
         transform.position = spawnPoint;
         ableToMove = true;
         Idle();
@@ -230,7 +233,8 @@ public class Player : MonoBehaviour
         if(other.tag == "KillZone")
         {
             ableToMove = false;
-            StartCoroutine(Spawn());
+            if(!isDead)
+                StartCoroutine(Spawn());
             Die();
         }
 
@@ -238,6 +242,13 @@ public class Player : MonoBehaviour
         {
             ableToMove = false;
             StartCoroutine(Voitto());
+        }
+
+        if (other.tag == "CameraBounds")
+        {
+
+            ableToMove = true;
+
         }
     }
 
@@ -252,8 +263,10 @@ public class Player : MonoBehaviour
     {
         if(collision.tag == "CameraBounds")
         {
+
             ableToMove = false;
-            StartCoroutine(Spawn());
+            if(isDead)
+                StartCoroutine(Spawn());
             Die();
         }
     }

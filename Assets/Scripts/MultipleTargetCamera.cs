@@ -24,7 +24,12 @@ public class MultipleTargetCamera : MonoBehaviour
     bool lockCamera = true;
 
     [SerializeField] GameObject StartingColliders;
+    [SerializeField] GameObject FinishLine;
 
+    float distance;
+    float minDist = Mathf.Infinity;
+    Transform tMin = null;
+    public float priorityMultiplier;
 
     private void Start()
     {
@@ -56,6 +61,7 @@ public class MultipleTargetCamera : MonoBehaviour
     {
         Vector3 centerPoint = GetCenterPoint();
 
+
         Vector3 newPosition = centerPoint + offset;
 
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
@@ -70,7 +76,14 @@ public class MultipleTargetCamera : MonoBehaviour
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for(int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            distance = Vector3.Distance(targets[i].position, FinishLine.transform.position);
+            if(distance < minDist)
+            {
+                tMin = targets[i];
+                minDist = distance;
+            }
+            Vector3 PriorityTarget = new Vector3(targets[i].position.x + (minDist * priorityMultiplier), targets[i].position.y, targets[i].position.z);
+            bounds.Encapsulate(PriorityTarget);
         }
 
         return bounds.center;

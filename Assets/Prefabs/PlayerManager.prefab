@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7766591341730076584}
   - component: {fileID: 7766591341730076585}
+  - component: {fileID: 2053348942}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -43,13 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_MaxPlayerCount: 3
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2053348942}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchCharacter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -64,7 +77,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 1667040048922697237, guid: 039b57cafada2f744be41e97c06f7256, type: 3}
+  m_PlayerPrefab: {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -74,3 +87,22 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &2053348942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766591341730076590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c125298817176c442b603bcf676b3752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameIsStarted: 0
+  MainMenuPanel: {fileID: 0}
+  characters:
+  - {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
+  - {fileID: 307944789247335723, guid: 4995bde18582d694aa2ac20992cb73e5, type: 3}
+  - {fileID: 307944789247335723, guid: efcd9c3f45f76bb4e87e0719b84afd6d, type: 3}
+  action: {fileID: -944628639613478452, guid: 9b2313f2a0c702f4997b9f1268278afd, type: 3}
