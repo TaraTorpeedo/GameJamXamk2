@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     int index = 0;
     [SerializeField] List<GameObject> characters = new List<GameObject>();
-    PlayerInputManager inputManager;
+    public PlayerInputManager inputManager;
 
     public InputActionAsset action;
 

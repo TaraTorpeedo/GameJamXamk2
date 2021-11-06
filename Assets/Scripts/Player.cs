@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rb;
-    BoxCollider2D playerCollider;
+    CapsuleCollider2D playerCollider;
 
     [SerializeField] float moveSpeed, jumpForce;
     [SerializeField] Transform groundCheck;
@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     bool ableToMove = true;
     bool isDead = false;
 
+    bool run = false;
+
     Vector3 spawnPoint;
 
     Camera cam;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         gm.gameIsStarted = true;
 
         rb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         cam = UnityEngine.Camera.main;
 
@@ -68,18 +70,23 @@ public class Player : MonoBehaviour
 
         if (rb.velocity.x > 0f)
         {
-            Run();
-            isTurning = true;
-            turnLeft = false;
-            //transform.localScale = Vector3.one;
+            if (rb.velocity.x > 10)
+                Run();
+            else
+                Walk();
+            //isTurning = true;
+            //turnLeft = false;
         }
 
         else if (rb.velocity.x < 0f)
         {
-            Run();
-            isTurning = true;
-            turnLeft = true;
-            //transform.localScale = new Vector3(-1f, 1f, 1f);
+            if (rb.velocity.x < -10)
+                Run();
+            else
+                Walk();
+
+            //isTurning = true;
+            //turnLeft = true;
         }
 
         else
@@ -87,7 +94,6 @@ public class Player : MonoBehaviour
 
         if (isTurning)
         {
-            //isTurning = false;
             if(turnLeft)
                 transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, -1, Time.deltaTime * 10), 1, 1);
             else
@@ -102,10 +108,17 @@ public class Player : MonoBehaviour
         if (!ableToMove)
             return;
 
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+        if (run)
+        {
+            rb.velocity = new Vector2(inputX * moveSpeed * 2, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+        }
+        Debug.Log(rb.velocity.x);
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
-
-
 
     }
 
@@ -141,6 +154,18 @@ public class Player : MonoBehaviour
     public void Move(InputAction.CallbackContext value)
     {
         inputX = value.ReadValue<Vector2>().x;
+
+        if (value.ReadValue<Vector2>().x < 0)
+        {
+            isTurning = true;
+            turnLeft = true;
+        }
+        else if(value.ReadValue<Vector2>().x > 0)
+        {
+            isTurning = true;
+            turnLeft = false;
+        }
+
     }
     public void Jump(InputAction.CallbackContext value)
     {
@@ -159,6 +184,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Boost(InputAction.CallbackContext value)
+    {
+        if (value.performed && ableToMove)
+        {
+            //Run();
+            run = true;
+        }
+        else
+        {
+            
+            run = false;
+        }
+        
+    }
+
     IEnumerator Spawn()
     {
         isDead = true;
@@ -166,7 +206,21 @@ public class Player : MonoBehaviour
 
         //Return
         isDead = false;
-        transform.position = spawnPoint;
+        if(gm.inputManager.playerCount > 1)
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            for(int i = 0; i < players.Length; i++)
+            {
+                if(!players[i].GetComponent<Player>().isDead)
+                    transform.position = players[i].transform.position;
+                else
+                    transform.position = spawnPoint;
+            }
+        }
+        else
+        {
+            transform.position = spawnPoint;
+        }
         ableToMove = true;
         Idle();
     }
@@ -174,51 +228,38 @@ public class Player : MonoBehaviour
     #region Animations
     void ResetAnimation()
     {
-        anim.SetBool("isLookUp", false);
-        anim.SetBool("isRun", false);
-        anim.SetBool("isJump", false);
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isJumping", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isIdling", false);
+        anim.SetBool("isDead", false);
     }
     public void Idle()
     {
         ResetAnimation();
-        anim.SetTrigger("idle");
+        anim.SetBool("isIdling", true); 
     }
-    public void Attack()
-    {
-        ResetAnimation();
-        anim.SetTrigger("attack");
-    }
-    public void TripOver()
-    {
-        ResetAnimation();
-        anim.SetTrigger("tripOver");
-    }
-    public void Hurt()
-    {
-        ResetAnimation();
-        anim.SetTrigger("hurt");
-    }
+
     public void Die()
     {
         ResetAnimation();
-        anim.SetTrigger("die");
+        anim.SetBool("isDead", true); 
     }
-    public void LookUp()
+    public void Walk()
     {
         ResetAnimation();
-        anim.SetBool("isLookUp", true);
+        anim.SetBool("isWalking", true);
     }
     public void Run()
     {
         ResetAnimation();
-        anim.SetBool("isRun", true);
+        anim.SetBool("isRunning", true);
 
     }
     public void Jump()
     {
         ResetAnimation();
-        anim.SetBool("isJump", true);
-
+        anim.SetBool("isJumping", true);
     }
 
     #endregion
