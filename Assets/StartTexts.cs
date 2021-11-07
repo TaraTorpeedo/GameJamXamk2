@@ -7,6 +7,8 @@ public class StartTexts : MonoBehaviour
 {
     bool started = false;
     public bool canPlay = false;
+
+    [SerializeField] GameObject BlackPanel;
     public void StartWrite()
     {
         if (!started)
@@ -19,7 +21,8 @@ public class StartTexts : MonoBehaviour
     IEnumerator delay()
     {
         yield return new WaitForSeconds(2);
-        StartCoroutine(writeText());
+        string tekstinpatka = "Once upon a time there was a group of childrens who lost in to the woods.\n It's resemble me of this forest.\nFour brave children swore an oath that they will do everything they can\n to find all the childrens who has lost or have been abandoned here. \nDeep in to the woods hide some scary secrets.\nLike these lost childrens we also live our unfinished adventures. \nSo let our new adventure beging.";
+        StartCoroutine(writeText(tekstinpatka,false));
     }
 
     IEnumerator DialogyDealay()
@@ -31,17 +34,22 @@ public class StartTexts : MonoBehaviour
 
     float TextDelay = 0.05f;
 
-    //string tekstinpatka = "Once upon a time there was a group of childrens who lost in to the woods.\n It's resemble me of this forest.\nFour brave children swore an oath that they will do everything they can\n to find all the childrens who has lost or have been abandoned here. \nDeep in to the woods hide some scary secrets.\nLike these lost childrens we also live our unfinished adventures. \nSo let our new adventure beging.";
-    string tekstinpatka = "a";
+    
 
     string currentText = "";
 
     public Text Liibalaaba;
-    public IEnumerator writeText()
+    public IEnumerator writeText(string tekstinpatka, bool isEnd)
     {
         string fullText = "";
 
         fullText = tekstinpatka;
+
+        if (isEnd)
+        {
+            Liibalaaba.text = "";
+            Liibalaaba.gameObject.SetActive(true);
+        }
 
         for (int i = 0; i <= fullText.Length; i++)
         {
@@ -52,7 +60,26 @@ public class StartTexts : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
+        if (!isEnd)
+            StartCoroutine(DialogyDealay());
+        else
+        {
+            BlackPanel.GetComponent<Animator>().SetBool("BlackIt", true);
+            //Sammuta tausta ‰‰ni
+            GameObject.Find("mastersound").SetActive(false);
+            yield return new WaitForSeconds(3.5f);
+            GetComponent<AudioSource>().Play();
+            //Roll the credits
+            yield return new WaitForSeconds(50);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
-        StartCoroutine(DialogyDealay());
+        }
+    }
+
+    public IEnumerator FinishText()
+    {
+        yield return new WaitForSeconds(2);
+        string tekstinpatka = "All roads lead to somewhere. We all feel lost sometimes.\nSo if you ever feel lost I belive that these lost childrens will find you.\nAnd keep you safe this time.";
+        StartCoroutine(writeText(tekstinpatka,true));
     }
 }

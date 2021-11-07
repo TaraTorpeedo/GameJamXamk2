@@ -8,6 +8,9 @@ public class TaustaTriggerer : MonoBehaviour
     bool isDone = false;
 
     public GameObject target;
+
+    public GameObject Canvas;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,11 @@ public class TaustaTriggerer : MonoBehaviour
                     StartCoroutine(HideStones(RollingStones));
 
                     return;
+                }
+
+                if(parent.name == "LostChild")
+                {
+                    StartCoroutine(Canvas.GetComponent<StartTexts>().FinishText());
                 }
 
                 isDone = true;
