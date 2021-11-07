@@ -9,6 +9,7 @@ TagManager:
   - CameraBounds
   - FinishLine
   - LostChildTrigger
+  - RollingStones
   layers:
   - Default
   - TransparentFX

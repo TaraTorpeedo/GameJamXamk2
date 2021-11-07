@@ -32,12 +32,33 @@ public class TaustaTriggerer : MonoBehaviour
                     target = collision.gameObject;
                 }
 
+                if(parent.name == "sortuvat")
+                {
+                    GameObject[] RollingStones = GameObject.FindGameObjectsWithTag("RollingStones");
+                    for(int i = 0; i < RollingStones.Length; i++)
+                    {
+                        RollingStones[i].GetComponent<Rigidbody2D>().simulated = true;
+                    }
+                    StartCoroutine(HideStones(RollingStones));
+
+                    return;
+                }
+
                 isDone = true;
                 parent.GetComponent<Animator>().SetBool("Animate", true);
 
                 if(parent.GetComponent<AudioSource>() != null)
                     parent.GetComponent<AudioSource>().Play();
             }
+        }
+    }
+
+    IEnumerator HideStones(GameObject[] RollingStones)
+    {
+        yield return new WaitForSeconds(3);
+        for (int i = 0; i < RollingStones.Length; i++)
+        {
+            RollingStones[i].gameObject.SetActive(false);
         }
     }
 }
