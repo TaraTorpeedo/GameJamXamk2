@@ -1844,18 +1844,6 @@ PrefabInstance:
       propertyPath: MainMenuPanel
       value: 
       objectReference: {fileID: 1387463239}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[1]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[2]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[3]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
     - target: {fileID: 7766591341730076584, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1899,10 +1887,6 @@ PrefabInstance:
     - target: {fileID: 7766591341730076584, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7766591341730076585, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: m_MaxPlayerCount
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7766591341730076590, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
       propertyPath: m_Name

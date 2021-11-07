@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 3
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -103,9 +103,9 @@ MonoBehaviour:
   MainMenuPanel: {fileID: 0}
   characters:
   - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-  - {fileID: 1327847424936737834, guid: b837984bc913cda48815b35a29862fc7, type: 3}
-  - {fileID: 1327847424936737834, guid: f77b41e63bf2f174cac44367953a37a1, type: 3}
-  - {fileID: 1327847424936737834, guid: 94fd90726d3e2b4459068c5a166b0947, type: 3}
+  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
+  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
+  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
   inputManager: {fileID: 0}
   action: {fileID: -944628639613478452, guid: 9b2313f2a0c702f4997b9f1268278afd, type: 3}
   startPosition: {fileID: 0}
