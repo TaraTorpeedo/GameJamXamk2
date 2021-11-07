@@ -24,14 +24,15 @@ public class wormAI : MonoBehaviour
         if (!isWake)
             return;
 
-        target = trigger.target;
         //transform.Translate(new Vector2(speed * Time.deltaTime, speed / 2*Time.deltaTime));
+        //transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
     }
     public IEnumerator WakeTheWorm()
     {
         yield return new WaitForSeconds(3);
+        target = trigger.target;
         isWake = true;
     }
 
