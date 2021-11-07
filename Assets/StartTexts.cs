@@ -31,7 +31,8 @@ public class StartTexts : MonoBehaviour
 
     float TextDelay = 0.05f;
 
-    string tekstinpatka = "Once upon a time there was a group of childrens who lost in to the woods.\n It's resemble me of this forest.\nFour brave children swore an oath that they will do everything they can\n to find all the childrens who has lost or have been abandoned here. \nDeep in to the woods hide some scary secrets.\nLike these lost childrens we also live our unfinished adventures. \nSo let our new adventure beging.";
+    //string tekstinpatka = "Once upon a time there was a group of childrens who lost in to the woods.\n It's resemble me of this forest.\nFour brave children swore an oath that they will do everything they can\n to find all the childrens who has lost or have been abandoned here. \nDeep in to the woods hide some scary secrets.\nLike these lost childrens we also live our unfinished adventures. \nSo let our new adventure beging.";
+    string tekstinpatka = "a";
 
     string currentText = "";
 

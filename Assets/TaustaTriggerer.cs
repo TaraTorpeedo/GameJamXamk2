@@ -25,8 +25,12 @@ public class TaustaTriggerer : MonoBehaviour
         {
             if (!isDone)
             {
-                StartCoroutine(parent.GetComponent<wormAI>().WakeTheWorm());
-                target = collision.gameObject;
+                if (parent.name == "mato")
+                {
+
+                    StartCoroutine(parent.GetComponent<wormAI>().WakeTheWorm());
+                    target = collision.gameObject;
+                }
 
                 isDone = true;
                 parent.GetComponent<Animator>().SetBool("Animate", true);

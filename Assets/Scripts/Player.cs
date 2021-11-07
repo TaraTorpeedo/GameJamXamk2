@@ -202,7 +202,6 @@ public class Player : MonoBehaviour
     {
         if (value.performed && ableToMove)
         {
-            //Run();
             run = true;
         }
         else
@@ -319,7 +318,8 @@ public class Player : MonoBehaviour
     {
         if(collision.tag == "CameraBounds")
         {
-
+            isDead = true;
+            Debug.Log("Camera Bounds");
             ableToMove = false;
             if(isDead)
                 StartCoroutine(Spawn());
