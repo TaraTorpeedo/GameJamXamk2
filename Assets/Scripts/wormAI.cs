@@ -5,7 +5,7 @@ using UnityEngine;
 public class wormAI : MonoBehaviour
 {
     bool isWake = false;
-    bool dontFollow = true;
+    bool isFolling = true;
     Animator anim;
 
     public float speed;
@@ -28,14 +28,22 @@ public class wormAI : MonoBehaviour
         if (!isWake)
             return;
 
-        if(!dontFollow)
+        if (isFolling)
+        {
+            Debug.Log("Seuraa");
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
         else
+        {
+            Debug.Log("Ei seuraa");
+
             transform.position = Vector2.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
+        }
 
         if(transform.position.x > 1500)
         {
-            dontFollow = true;
+            Debug.Log("Pakenee");
+            isFolling = false;
         }
 
 
@@ -44,12 +52,16 @@ public class wormAI : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         target = trigger.target;
+        isFolling = true;
         isWake = true;
     }
 
     public void ResetWorm()
     {
         transform.position = startPos;
+        anim.SetBool("Animate", false);
+        trigger.GetComponent<TaustaTriggerer>().isDone = false;
+        isFolling = false;
         isWake = false;
     }
 }

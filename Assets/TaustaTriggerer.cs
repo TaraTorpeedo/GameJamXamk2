@@ -5,7 +5,7 @@ using UnityEngine;
 public class TaustaTriggerer : MonoBehaviour
 {
     [SerializeField] GameObject parent;
-    bool isDone = false;
+    public bool isDone = false;
 
     public GameObject target;
 
@@ -28,12 +28,7 @@ public class TaustaTriggerer : MonoBehaviour
         {
             if (!isDone)
             {
-                if (parent.name == "mato")
-                {
 
-                    StartCoroutine(parent.GetComponent<wormAI>().WakeTheWorm());
-                    target = collision.gameObject;
-                }
 
                 if(parent.name == "sortuvat")
                 {
@@ -53,6 +48,15 @@ public class TaustaTriggerer : MonoBehaviour
                 }
 
                 isDone = true;
+
+                if (parent.name == "mato")
+                {
+
+                    StartCoroutine(parent.GetComponent<wormAI>().WakeTheWorm());
+                    target = collision.gameObject;
+                }
+
+
                 parent.GetComponent<Animator>().SetBool("Animate", true);
 
                 if(parent.GetComponent<AudioSource>() != null)
