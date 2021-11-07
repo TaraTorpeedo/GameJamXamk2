@@ -6,6 +6,8 @@ public class TaustaTriggerer : MonoBehaviour
 {
     [SerializeField] GameObject parent;
     bool isDone = false;
+
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class TaustaTriggerer : MonoBehaviour
         {
             if (!isDone)
             {
+                StartCoroutine(parent.GetComponent<wormAI>().WakeTheWorm());
+                target = collision.gameObject;
 
                 isDone = true;
                 parent.GetComponent<Animator>().SetBool("Animate", true);
