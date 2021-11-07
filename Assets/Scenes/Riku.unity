@@ -1723,22 +1723,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: MainMenuPanel
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[1]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 0c3c55374048b194492cc0d04a8725fc, type: 3}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[2]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 1da091ba718a20342b6153821d3fdcc4, type: 3}
-    - target: {fileID: 2053348942, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
-      propertyPath: characters.Array.data[3]
-      value: 
-      objectReference: {fileID: 1327847424936737834, guid: 2abb6249afd3dd949bfd6c51da2e941d, type: 3}
     - target: {fileID: 7766591341730076584, guid: 53a942d68df4d3b4ead3c3471b265a8a, type: 3}
       propertyPath: m_RootOrder
       value: 6

@@ -5,7 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Ciconia Studio/2D Environment/Black&White - Dark Forest/Dark Forest_Demo
+      Scene.unity
+    guid: 33a90fdb27c7e254c8300e8919e16f89
   m_configObjects: {}

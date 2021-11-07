@@ -5,6 +5,7 @@ using UnityEngine;
 public class wormAI : MonoBehaviour
 {
     bool isWake = false;
+    bool dontFollow = true;
     Animator anim;
 
     public float speed;
@@ -27,10 +28,15 @@ public class wormAI : MonoBehaviour
         if (!isWake)
             return;
 
-        //transform.Translate(new Vector2(speed * Time.deltaTime, speed / 2*Time.deltaTime));
-        //transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if(!dontFollow)
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        else
+            transform.position = Vector2.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
 
+        if(transform.position.x > 1500)
+        {
+            dontFollow = true;
+        }
 
 
     }

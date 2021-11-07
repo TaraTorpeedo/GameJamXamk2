@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 
         if (run)
         {
-            rb.velocity = new Vector2(inputX * moveSpeed * Time.deltaTime * 2, rb.velocity.y);
+            rb.velocity = new Vector2(inputX * moveSpeed * Time.deltaTime * 1.4f, rb.velocity.y);
         }
         else
         {
@@ -271,7 +271,7 @@ public class Player : MonoBehaviour
     public void Run()
     {
         GetComponent<AudioSource>().volume = 1;
-        GetComponent<AudioSource>().pitch = 2f;
+        GetComponent<AudioSource>().pitch = 1.4f;
         ResetAnimation();
         anim.SetBool("isRunning", true);
 

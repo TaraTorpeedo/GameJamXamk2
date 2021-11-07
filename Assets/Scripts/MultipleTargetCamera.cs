@@ -36,6 +36,7 @@ public class MultipleTargetCamera : MonoBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
+        Screen.SetResolution(1920,1080, false);
     }
 
     private void LateUpdate()
