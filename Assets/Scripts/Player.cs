@@ -87,9 +87,9 @@ public class Player : MonoBehaviour
                 Walk();
 
         }
-
         else
             Idle();
+
 
 
         if (isTurning)
@@ -110,11 +110,11 @@ public class Player : MonoBehaviour
 
         if (run)
         {
-            rb.velocity = new Vector2(inputX * moveSpeed * 2, rb.velocity.y);
+            rb.velocity = new Vector2(inputX * moveSpeed * Time.deltaTime * 2, rb.velocity.y);
         }
         else
         {
-            rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(inputX * moveSpeed *Time.deltaTime, rb.velocity.y);
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, whatIsGround);
@@ -164,19 +164,22 @@ public class Player : MonoBehaviour
 
     public void Move(InputAction.CallbackContext value)
     {
-        inputX = value.ReadValue<Vector2>().x;
-        if (!isDead)
+        if (ableToMove)
         {
 
-            if (value.ReadValue<Vector2>().x < 0)
+            inputX = value.ReadValue<Vector2>().x;
+            if (!isDead)
             {
-                isTurning = true;
-                turnLeft = true;
-            }
-            else if (value.ReadValue<Vector2>().x > 0)
-            {
-                isTurning = true;
-                turnLeft = false;
+                if (value.ReadValue<Vector2>().x < 0)
+                {
+                    isTurning = true;
+                    turnLeft = true;
+                }
+                else if (value.ReadValue<Vector2>().x > 0)
+                {
+                    isTurning = true;
+                    turnLeft = false;
+                }
             }
         }
 
@@ -305,6 +308,11 @@ public class Player : MonoBehaviour
             ableToMove = true;
 
         }
+
+        if(other.tag == "LostChildTrigger")
+        {
+            ChildFound();
+        }
     }
 
     IEnumerator Voitto()
@@ -325,6 +333,28 @@ public class Player : MonoBehaviour
                 StartCoroutine(Spawn());
             Die();
         }
+    }
+
+    void ChildFound()
+    {
+        ableToMove = false;
+        Transform LostChild;
+        LostChild = GameObject.Find("LostChild").transform;
+        //transform.Translate(LostChild.position.x, LostChild.position.y, moveSpeed * Time.deltaTime);
+        StartCoroutine(TheEnd());
+    }
+
+    IEnumerator TheEnd()
+    {
+
+        yield return new WaitForSeconds(3);
+        //rb.velocity = new Vector2(0, rb.velocity.y);
+        //Tähän loppu tekstit
+
+
+        yield return new WaitForSeconds(3);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+
     }
 
 }
