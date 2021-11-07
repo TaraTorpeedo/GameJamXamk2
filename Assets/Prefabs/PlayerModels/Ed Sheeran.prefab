@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 79551967}
   - component: {fileID: 79551968}
+  - component: {fileID: 884589020036461222}
   m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
@@ -25,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79551966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.082, y: 5.76, z: 0}
-  m_LocalScale: {x: 2, y: -0.05, z: 1}
+  m_LocalPosition: {x: 0.27, y: 5.39, z: 0}
+  m_LocalScale: {x: 3.613248, y: -0.8566547, z: 2.0992}
   m_Children: []
   m_Father: {fileID: 1923442916143324360}
   m_RootOrder: 8
@@ -82,6 +83,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &884589020036461222
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79551966}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1280227504
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772096161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4, y: -3.93, z: 0}
+  m_LocalPosition: {x: 1.96, y: -4.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1923442916143324360}
@@ -242,8 +269,8 @@ MonoBehaviour:
   - {fileID: 3211831247235940970}
   - {fileID: 6167458953580901212}
   m_Bounds:
-    m_Center: {x: -0.0013750494, y: 0.0000009536743, z: 0}
-    m_Extent: {x: 0.45792514, y: 2.1149993, z: 0}
+    m_Center: {x: -0.0013750494, y: 0, z: 0}
+    m_Extent: {x: 0.45792514, y: 2.1150002, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &901898149696203168
@@ -425,6 +452,7 @@ GameObject:
   - component: {fileID: 2689837963258134089}
   - component: {fileID: 2689837963258134197}
   - component: {fileID: 2689837963258134090}
+  - component: {fileID: 4770618288498431730}
   m_Layer: 0
   m_Name: Ed Sheeran
   m_TagString: Player
@@ -609,6 +637,102 @@ MonoBehaviour:
     m_Bits: 64
   gravityMultiplier: 0.01
   CharacterScale: 0.4
+--- !u!82 &4770618288498431730
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327847424936737834}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 67a60b746fa8fbc44be6e901580d6c63, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1594448656551965808
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,8 +895,8 @@ MonoBehaviour:
   - {fileID: 6161383087206063358}
   - {fileID: 4490488731880515928}
   m_Bounds:
-    m_Center: {x: 0.00023525953, y: 0.00028026104, z: 0}
-    m_Extent: {x: 0.6563946, y: 1.9360098, z: 0}
+    m_Center: {x: 0.00023525953, y: 0.0002797842, z: 0}
+    m_Extent: {x: 0.6563946, y: 1.9360102, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &3019743439826713447
@@ -936,7 +1060,7 @@ MonoBehaviour:
   - {fileID: 1686702194074166949}
   - {fileID: 9076678723692834996}
   m_Bounds:
-    m_Center: {x: 0.0022451282, y: -0.00000834465, z: 0}
+    m_Center: {x: 0.0022527575, y: -0.000010251999, z: 0}
     m_Extent: {x: 0.6677551, y: 2.09516, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1170,7 +1294,7 @@ MonoBehaviour:
   - {fileID: 1962900899071381027}
   - {fileID: 6167458953580901212}
   m_Bounds:
-    m_Center: {x: 0, y: 0.0011508465, z: 0}
+    m_Center: {x: 0, y: 0.0011518002, z: 0}
     m_Extent: {x: 1.9650005, y: 3.0018306, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1304,7 +1428,7 @@ MonoBehaviour:
   - {fileID: 5699501673700677074}
   - {fileID: 8959301395124633539}
   m_Bounds:
-    m_Center: {x: 0.0015370846, y: 0.000254035, z: 0}
+    m_Center: {x: 0.0015351772, y: 0.00025689602, z: 0}
     m_Extent: {x: 1.1084654, y: 1.7297451, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
             Idle();
 
 
-
         if (isTurning)
         {
             if (turnLeft)
@@ -252,6 +251,7 @@ public class Player : MonoBehaviour
     }
     public void Idle()
     {
+        GetComponent<AudioSource>().volume = 0;
         ResetAnimation();
         anim.SetBool("isIdling", true); 
     }
@@ -263,17 +263,22 @@ public class Player : MonoBehaviour
     }
     public void Walk()
     {
+        GetComponent<AudioSource>().volume = 1;
+        GetComponent<AudioSource>().pitch = 1f;
         ResetAnimation();
         anim.SetBool("isWalking", true);
     }
     public void Run()
     {
+        GetComponent<AudioSource>().volume = 1;
+        GetComponent<AudioSource>().pitch = 2f;
         ResetAnimation();
         anim.SetBool("isRunning", true);
 
     }
     public void Jump()
     {
+        GetComponent<AudioSource>().volume = 0;
         ResetAnimation();
         anim.SetBool("isJumping", true);
     }
