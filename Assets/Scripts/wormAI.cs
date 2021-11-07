@@ -12,10 +12,13 @@ public class wormAI : MonoBehaviour
 
     public TaustaTriggerer trigger;
 
+    Vector2 startPos;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -28,6 +31,8 @@ public class wormAI : MonoBehaviour
         //transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 
+
+
     }
     public IEnumerator WakeTheWorm()
     {
@@ -36,4 +41,9 @@ public class wormAI : MonoBehaviour
         isWake = true;
     }
 
+    public void ResetWorm()
+    {
+        transform.position = startPos;
+        isWake = false;
+    }
 }

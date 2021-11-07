@@ -280,7 +280,8 @@ public class Player : MonoBehaviour
     {
         GetComponent<AudioSource>().volume = 0;
         ResetAnimation();
-        anim.SetBool("isJumping", true);
+        //anim.SetBool("isJumping", true);
+        anim.SetBool("isWalking", true);
     }
 
     #endregion
@@ -343,23 +344,23 @@ public class Player : MonoBehaviour
     void ChildFound()
     {
         ableToMove = false;
-        Transform LostChild;
-        LostChild = GameObject.Find("LostChild").transform;
+        //Transform LostChild;
+        //LostChild = GameObject.Find("LostChild").transform;
         //transform.Translate(LostChild.position.x, LostChild.position.y, moveSpeed * Time.deltaTime);
-        StartCoroutine(TheEnd());
+        //StartCoroutine(TheEnd());
     }
 
-    IEnumerator TheEnd()
-    {
-
-        yield return new WaitForSeconds(3);
-        //rb.velocity = new Vector2(0, rb.velocity.y);
-        //Tähän loppu tekstit
-
-
-        yield return new WaitForSeconds(3);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
-
-    }
+    //IEnumerator TheEnd()
+    //{
+    //
+    //    yield return new WaitForSeconds(3);
+    //    //rb.velocity = new Vector2(0, rb.velocity.y);
+    //    //Tähän loppu tekstit
+    //
+    //
+    //    yield return new WaitForSeconds(3);
+    //    UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    //
+    //}
 
 }

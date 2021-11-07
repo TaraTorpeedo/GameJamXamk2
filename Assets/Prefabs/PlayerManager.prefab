@@ -103,9 +103,9 @@ MonoBehaviour:
   MainMenuPanel: {fileID: 0}
   characters:
   - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
-  - {fileID: 1327847424936737834, guid: 9a94d494ed4d5154a85e7c81819fcff7, type: 3}
+  - {fileID: 1327847424936737834, guid: 0c3c55374048b194492cc0d04a8725fc, type: 3}
+  - {fileID: 1327847424936737834, guid: 1da091ba718a20342b6153821d3fdcc4, type: 3}
+  - {fileID: 1327847424936737834, guid: 2abb6249afd3dd949bfd6c51da2e941d, type: 3}
   inputManager: {fileID: 0}
   action: {fileID: -944628639613478452, guid: 9b2313f2a0c702f4997b9f1268278afd, type: 3}
   startPosition: {fileID: 0}
